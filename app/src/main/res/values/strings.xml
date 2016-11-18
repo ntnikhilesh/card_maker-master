@@ -50,4 +50,9 @@
 
     <string name="wedding_msg">God has led two lives to take one path. The honour of your presence is requested at the marriage </string>
 
+
+    <!--birthday detail  -->
+
+    <string name="birthday_msg">Here's wishing you success and happiness today and always. Have a wonderfull birthday . </string>
+
 </resources>

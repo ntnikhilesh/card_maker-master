@@ -138,7 +138,7 @@ public class WeddingDetailFragment extends Fragment {
                         .show();
             }
         });
-        nextb=(Button)fl.findViewById(R.id.button_next);
+        nextb=(Button)fl.findViewById(R.id.button_next_on_wedding_detail_fragment);
         nextb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
