@@ -115,7 +115,7 @@ public class LoginFragment extends Fragment {
                             Toast.LENGTH_SHORT).show();
                     android.support.v4.app.FragmentManager fragmentManager=getFragmentManager();
                     FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-                    WeddingDetailFragment fragment = new WeddingDetailFragment();
+                    CardOptionFragment fragment = new CardOptionFragment();
                     fragmentTransaction.replace(R.id.fragment_container, fragment);
                     fragmentTransaction.addToBackStack("f2");
                     fragmentTransaction.commit();
@@ -228,7 +228,7 @@ public class LoginFragment extends Fragment {
 
                 android.support.v4.app.FragmentManager fragmentManager=getFragmentManager();
                 FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-                WeddingDetailFragment fragment = new WeddingDetailFragment();
+                CardOptionFragment fragment = new CardOptionFragment();
                 fragmentTransaction.replace(R.id.fragment_container, fragment);
                 fragmentTransaction.addToBackStack("f2");
                 fragmentTransaction.commit();

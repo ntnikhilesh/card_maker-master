@@ -1,0 +1,41 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.dell.mdemo.fregment.CardOptionFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <Button
+        android:id="@+id/botton_go_to_birthday_detail"
+        style="?android:textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="BIRTHDAY CARD"
+        android:textColor="@color/et_background"
+        android:textSize="15sp"
+        android:background="@color/text_color" />
+
+
+    <Button
+        android:id="@+id/botton_go_to_wedding_detail"
+
+        style="?android:textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="WEDDING CARD"
+        android:textColor="@color/et_background"
+        android:textSize="15sp"
+        android:background="@color/text_color" />
+
+
+
+
+</LinearLayout>
+</FrameLayout>
