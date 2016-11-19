@@ -4,9 +4,11 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import com.example.dell.mdemo.R;
 
@@ -19,6 +21,9 @@ import com.example.dell.mdemo.R;
  * create an instance of this fragment.
  */
 public class BirthdayCardFragment extends Fragment {
+    String mbirthday_boy_name,myour_name,mwish;
+
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -58,6 +63,20 @@ public class BirthdayCardFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
+
+            Bundle bundle = getArguments();
+//        Log.d("rbundle",bundle.toString());
+            if (bundle != null) {
+                // nyourname = bundle.getString("your name");
+                mbirthday_boy_name = bundle.getString("bboy name");
+                myour_name = bundle.getString("your name");
+                mwish = bundle.getString("wish");
+
+
+
+                Log.d("name",mbirthday_boy_name+"\n"+myour_name+"\n"+mwish);
+            }
         }
     }
 
@@ -65,7 +84,12 @@ public class BirthdayCardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_birthday_card, container, false);
+
+
+        FrameLayout fl=(FrameLayout)inflater.inflate(R.layout.fragment_birthday_card, container, false);
+
+
+        return fl;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

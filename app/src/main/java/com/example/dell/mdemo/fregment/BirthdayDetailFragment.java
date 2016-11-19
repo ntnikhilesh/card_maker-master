@@ -3,10 +3,16 @@ package com.example.dell.mdemo.fregment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.FrameLayout;
 
 import com.example.dell.mdemo.R;
 
@@ -19,6 +25,15 @@ import com.example.dell.mdemo.R;
  * create an instance of this fragment.
  */
 public class BirthdayDetailFragment extends Fragment {
+
+    EditText birthday_boy_name,your_name,wish;
+    Button next_on_birthday_detail;
+
+    String mbirthday_boy_name,myour_name,mwish;
+
+    FrameLayout fl;
+
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -65,7 +80,50 @@ public class BirthdayDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_birthday_detail, container, false);
+        fl=(FrameLayout) inflater.inflate(R.layout.fragment_birthday_detail, container, false);
+
+
+        next_on_birthday_detail=(Button)fl.findViewById(R.id.button_next_on_birthday_detail_fragment);
+
+        next_on_birthday_detail.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view) {
+
+                birthday_boy_name=(EditText)fl.findViewById(R.id.et_bithday_boy);
+                your_name=(EditText)fl.findViewById(R.id.et_your_name_on_birthday_detail);
+                wish=(EditText)fl.findViewById(R.id.et_birthday_wish);
+
+                mbirthday_boy_name=birthday_boy_name.getText().toString();
+                myour_name=your_name.getText().toString();
+                mwish=wish.getText().toString();
+
+                Log.d("wc detail",myour_name+""+mbirthday_boy_name+""+myour_name+""+mwish);
+
+                // SelectDesignFragment fragment = new SelectDesignFragment();
+
+                BirthdayCardFragment fragment = new BirthdayCardFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("bboy name",mbirthday_boy_name);
+                bundle.putString("your name",myour_name);
+                bundle.putString("wish",mwish);
+
+
+
+                fragment.setArguments(bundle);
+
+                android.support.v4.app.FragmentManager fragmentManager=getFragmentManager();
+                FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+
+                fragmentTransaction.replace(R.id.fragment_container, fragment);
+                fragmentTransaction.addToBackStack("f12");
+                fragmentTransaction.commit();
+
+            }
+        });
+
+
+        return fl;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

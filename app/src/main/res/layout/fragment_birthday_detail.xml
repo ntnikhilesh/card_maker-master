@@ -47,7 +47,7 @@
                 android:layout_marginTop="20dp">
 
                 <EditText
-                    android:id="@+id/et_partner_name"
+                    android:id="@+id/et_your_name_on_birthday_detail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Your_Name (Max 20 characters)"
@@ -58,14 +58,7 @@
             </android.support.design.widget.TextInputLayout>
 
 
-            <TextView
-                android:id="@+id/tv_date_time"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_marginTop="20dp"
-                android:textColor="@color/black"
-                android:textSize="15sp"/>
+
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -93,6 +86,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Next"
+                android:gravity="center"
                 android:layout_marginTop="40dp"
                 android:textColor="@color/et_background"
                 android:textSize="15sp"
