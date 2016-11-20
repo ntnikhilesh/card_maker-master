@@ -102,7 +102,7 @@ public class BirthdayDetailFragment extends Fragment {
 
                 // SelectDesignFragment fragment = new SelectDesignFragment();
 
-                BirthdayCardFragment fragment = new BirthdayCardFragment();
+                Select_Bback_fragment fragment = new Select_Bback_fragment();
                 Bundle bundle = new Bundle();
                 bundle.putString("bboy name",mbirthday_boy_name);
                 bundle.putString("your name",myour_name);

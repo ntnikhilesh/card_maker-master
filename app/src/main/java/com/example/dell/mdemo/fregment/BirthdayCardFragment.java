@@ -9,6 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.dell.mdemo.R;
 
@@ -22,6 +25,14 @@ import com.example.dell.mdemo.R;
  */
 public class BirthdayCardFragment extends Fragment {
     String mbirthday_boy_name,myour_name,mwish;
+    int m_bback_no,m_text_no,m_cake_no;
+
+    FrameLayout fl;
+
+    TextView tv_bboy_name,tv_wish,tv_from;
+
+    ImageView iv_hapy_text,iv_bboy,iv_cake;
+    LinearLayout ll;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -72,10 +83,12 @@ public class BirthdayCardFragment extends Fragment {
                 mbirthday_boy_name = bundle.getString("bboy name");
                 myour_name = bundle.getString("your name");
                 mwish = bundle.getString("wish");
+                m_bback_no = bundle.getInt("bback_no");
+                m_text_no = bundle.getInt("btext_no");
+                m_cake_no = bundle.getInt("bcake_no");
 
 
-
-                Log.d("name",mbirthday_boy_name+"\n"+myour_name+"\n"+mwish);
+                Log.d("name on card",mbirthday_boy_name+"\n"+myour_name+"\n"+mwish+"\n"+m_bback_no+"\n"+m_text_no+"\n"+m_cake_no);
             }
         }
     }
@@ -86,11 +99,294 @@ public class BirthdayCardFragment extends Fragment {
         // Inflate the layout for this fragment
 
 
-        FrameLayout fl=(FrameLayout)inflater.inflate(R.layout.fragment_birthday_card, container, false);
+        fl=(FrameLayout)inflater.inflate(R.layout.fragment_birthday_card, container, false);
+
+
+        set_data_on_bcard();
+
+
+
 
 
         return fl;
     }
+
+
+    public void set_data_on_bcard()
+    {
+        tv_bboy_name=(TextView)fl.findViewById(R.id.tv_to_on_birthday_card);
+        tv_wish=(TextView)fl.findViewById(R.id.tv_wish);
+        tv_from=(TextView)fl.findViewById(R.id.tv_from);
+
+
+
+
+        tv_bboy_name.setText(mbirthday_boy_name);
+        tv_from.setText("From : "+myour_name);
+        tv_wish.setText(mwish);
+
+        set_background();
+        set_happy_text();
+        set_cake();
+
+
+
+
+    }//end set data on bcard
+
+
+    public void set_background()
+    {
+        ll=(LinearLayout)fl.findViewById(R.id.ll_birthday_card_fragment);
+
+        switch (m_bback_no)
+        {
+            case 1:
+
+
+                ll.setBackgroundResource(R.drawable.bdesign1);
+                break;
+
+            case 2:
+
+
+                ll.setBackgroundResource(R.drawable.bdesign2);
+                break;
+
+            case 3:
+
+
+                ll.setBackgroundResource(R.drawable.bdesign3);
+                break;
+
+            case 4:
+
+
+                ll.setBackgroundResource(R.drawable.bdesign4);
+                break;
+
+            case 5:
+
+
+                ll.setBackgroundResource(R.drawable.bdesign5);
+                break;
+
+            case 6:
+
+
+                ll.setBackgroundResource(R.drawable.bdesign6);
+                break;
+
+            case 7:
+
+
+                ll.setBackgroundResource(R.drawable.bdesign7);
+                break;
+
+            case 8:
+
+
+                ll.setBackgroundResource(R.drawable.bdesign8);
+                break;
+
+            case 9:
+
+
+                ll.setBackgroundResource(R.drawable.bdesign9);
+                break;
+
+            case 10:
+
+
+                ll.setBackgroundResource(R.drawable.bdesign10);
+                break;
+
+            case 11:
+
+
+                ll.setBackgroundResource(R.drawable.bdesign11);
+                break;
+
+            case 12:
+
+
+                ll.setBackgroundResource(R.drawable.bdesign12);
+                break;
+
+        }
+
+
+    }//end set background
+
+
+    public void set_happy_text()
+    {
+
+        iv_hapy_text=(ImageView)fl.findViewById(R.id.iv_happy_text);
+
+        switch (m_text_no)
+        {
+            case 1:
+
+
+                iv_hapy_text.setImageResource(R.drawable.happybirthday_image1);
+                break;
+
+            case 2:
+
+
+                iv_hapy_text.setImageResource(R.drawable.happybirthday_image2);
+                break;
+
+            case 3:
+
+
+                iv_hapy_text.setImageResource(R.drawable.happybirthday_image3);
+                break;
+
+            case 4:
+
+
+                iv_hapy_text.setImageResource(R.drawable.happybirthday_image4);
+                break;
+
+            case 5:
+
+
+                iv_hapy_text.setImageResource(R.drawable.happybirthday_image5);
+                break;
+
+            case 6:
+
+
+                iv_hapy_text.setImageResource(R.drawable.happybirthday_image6);
+                break;
+
+            case 7:
+
+
+                iv_hapy_text.setImageResource(R.drawable.happybirthday_image7);
+                break;
+
+            case 8:
+
+
+                iv_hapy_text.setImageResource(R.drawable.happybirthday_image8);
+                break;
+
+            case 9:
+
+
+                iv_hapy_text.setImageResource(R.drawable.happybirthday_image9);
+                break;
+
+            case 10:
+
+
+                iv_hapy_text.setImageResource(R.drawable.happybirthday_image10);
+                break;
+
+            case 11:
+
+
+                iv_hapy_text.setImageResource(R.drawable.happybirthday_image11);
+                break;
+
+            case 12:
+
+
+                iv_hapy_text.setImageResource(R.drawable.happybirthday_image12);
+                break;
+
+        }
+    }//end set hapy text
+
+    public void set_cake()
+    {
+
+        iv_cake=(ImageView)fl.findViewById(R.id.iv_cake_on_bcard);
+
+        switch (m_cake_no)
+        {
+            case 1:
+
+
+                iv_cake.setImageResource(R.drawable.cake_image1);
+                break;
+
+            case 2:
+
+
+                iv_cake.setImageResource(R.drawable.cake_image2);
+                break;
+
+            case 3:
+
+
+                iv_cake.setImageResource(R.drawable.cake_image3);
+                break;
+
+            case 4:
+
+
+                iv_cake.setImageResource(R.drawable.cake_image4);
+                break;
+            case 5:
+
+
+                iv_cake.setImageResource(R.drawable.cake_image5);
+                break;
+            case 6:
+
+
+                iv_cake.setImageResource(R.drawable.cake_image6);
+                break;
+            case 7:
+
+
+                iv_cake.setImageResource(R.drawable.cake_image7);
+                break;
+
+            case 8:
+
+
+                iv_cake.setImageResource(R.drawable.cake_image8);
+                break;
+
+            case 9:
+
+
+                iv_cake.setImageResource(R.drawable.cake_image9);
+                break;
+            case 10:
+
+
+                iv_cake.setImageResource(R.drawable.cake_image10);
+                break;
+            case 11:
+
+
+                iv_cake.setImageResource(R.drawable.cake_image11);
+                break;
+
+            case 12:
+
+
+                iv_cake.setImageResource(R.drawable.cake_image12);
+                break;
+
+
+
+
+
+
+        }
+
+    }//end set cake
+
+
+
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
