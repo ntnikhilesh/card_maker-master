@@ -76,8 +76,8 @@ tools:context="com.example.dell.mdemo.DemoActivity">
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginRight="70dp"
             android:text="@string/birthday_msg"
             android:gravity="center"
             android:textSize="15sp"
@@ -101,12 +101,21 @@ tools:context="com.example.dell.mdemo.DemoActivity">
             />
         <Button
             android:id="@+id/button_save_bimage_on_demo"
-            android:layout_width="80dp"
+            android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:text="VSave Image"
-            android:onClick="saveImage"/>
+            android:text="Save Image"
+            android:textColor="@color/et_background"
+            android:textSize="15sp"
+            android:background="@color/text_color"
+            android:layout_marginTop="40dp"
+            android:gravity="center"
+            android:layout_marginLeft="120dp"/>
 
     </LinearLayout>
+
+
 </ScrollView>
+
+
 </FrameLayout>
 

@@ -348,7 +348,8 @@ public class DemoActivity extends AppCompatActivity {
         View view1 = getWindow().getDecorView().getRootView();
         DisplayMetrics metrics = DemoActivity.this.getResources().getDisplayMetrics();
         int width = metrics.widthPixels;
-        view1.measure(width, View.MeasureSpec.UNSPECIFIED);
+       // int height = metrics.heightPixels;
+        view1.measure(80, View.MeasureSpec.UNSPECIFIED);
        bitmap = Bitmap.createBitmap(view1.getMeasuredWidth(), view1.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
 
 
@@ -367,6 +368,8 @@ public class DemoActivity extends AppCompatActivity {
         try {
             out = new FileOutputStream(filename);
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
+
+            Toast.makeText(DemoActivity.this,"Image saved in Nikhil folder",Toast.LENGTH_LONG).show();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -375,7 +378,7 @@ public class DemoActivity extends AppCompatActivity {
 
     private String getFilename() {
         File file = new File(Environment.getExternalStorageDirectory()
-                .getPath(), "TestFolder");
+                .getPath(), "Nikhil");
         if (!file.exists()) {
             file.mkdirs();
         }
