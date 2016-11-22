@@ -1,6 +1,8 @@
 package com.example.dell.mdemo.fregment;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import com.example.dell.mdemo.DemoActivity;
 import com.example.dell.mdemo.R;
 
 /**
@@ -270,12 +273,32 @@ public class select_bcake_fragment extends Fragment {
 
     }
 
+// send data from fragment to Activity
 
+
+    public interface onSomeEventListener {
+        public void someEvent(String n_bboy_name,String n_your_name,String nwish,int n_bback_no,int n_text_no,int n_cake_no);
+    }
+
+    onSomeEventListener someEventListener;
+/*
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            someEventListener = (onSomeEventListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString() + " must implement onSomeEventListener");
+        }
+    } */
 
 
     public void get_d_send_data()
     {
 
+        someEventListener.someEvent(m_bboy_name,myour_name,mwish,m_bback_no,m_text_no,m_cake_no);
+        //moveToNewActivity();
+/*
         BirthdayCardFragment fragment = new BirthdayCardFragment();
         Bundle bundle = new Bundle();
         bundle.putString("bboy name",m_bboy_name);
@@ -294,9 +317,16 @@ public class select_bcake_fragment extends Fragment {
 
         fragmentTransaction.replace(R.id.fragment_container, fragment);
         fragmentTransaction.addToBackStack("f15");
-        fragmentTransaction.commit();
+        fragmentTransaction.commit();  */
     }
 
+
+    private void moveToNewActivity() {
+        Intent i = new Intent(getActivity(), DemoActivity.class);
+        startActivity(i);
+        ((Activity) getActivity()).overridePendingTransition(0,0);
+
+    }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -313,6 +343,12 @@ public class select_bcake_fragment extends Fragment {
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
+        }
+
+        try {
+            someEventListener = (onSomeEventListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + " must implement onSomeEventListener");
         }
     }
 

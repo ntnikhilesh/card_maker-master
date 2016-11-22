@@ -1,5 +1,6 @@
 package com.example.dell.mdemo;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -33,7 +34,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, LoginFragment.OnFragmentInteractionListener ,WeddingDetailFragment.OnFragmentInteractionListener,SelectDesignFragment.OnFragmentInteractionListener,SignupFragment.OnFragmentInteractionListener,UpdatePasswordFragment.OnFragmentInteractionListener,SelectBackground.OnFragmentInteractionListener,CardOptionFragment.OnFragmentInteractionListener,BirthdayDetailFragment.OnFragmentInteractionListener,BirthdayCardFragment.OnFragmentInteractionListener,Select_Bback_fragment.OnFragmentInteractionListener,Select_btext_fragment.OnFragmentInteractionListener,select_bcake_fragment.OnFragmentInteractionListener{
+        implements NavigationView.OnNavigationItemSelectedListener, LoginFragment.OnFragmentInteractionListener ,WeddingDetailFragment.OnFragmentInteractionListener,SelectDesignFragment.OnFragmentInteractionListener,SignupFragment.OnFragmentInteractionListener,UpdatePasswordFragment.OnFragmentInteractionListener,SelectBackground.OnFragmentInteractionListener,CardOptionFragment.OnFragmentInteractionListener,BirthdayDetailFragment.OnFragmentInteractionListener,BirthdayCardFragment.OnFragmentInteractionListener,Select_Bback_fragment.OnFragmentInteractionListener,Select_btext_fragment.OnFragmentInteractionListener,select_bcake_fragment.OnFragmentInteractionListener,select_bcake_fragment.onSomeEventListener {
    // EditText enter_mapatg,address_line1,address_line2,city,state,zip,phone,lat,lon;
     //ImageView maptag_image;
 
@@ -74,6 +75,9 @@ public class MainActivity extends AppCompatActivity
         fragmentTransaction.add(R.id.fragment_container, fragment);
         fragmentTransaction.addToBackStack("f1");
         fragmentTransaction.commit();
+
+       // Intent intent=new Intent(MainActivity.this,DemoActivity.class);
+        //startActivity(intent);
 
       /* Intent intent=new Intent(MainActivity.this,LoginActivity.class);
         startActivity(intent);
@@ -281,6 +285,24 @@ public class MainActivity extends AppCompatActivity
     public void onFragmentInteraction(Uri uri) {
 
     }
+
+    @Override
+    public void someEvent(String n_bboy_name, String n_your_name, String nwish, int n_bback_no, int n_text_no, int n_cake_no) {
+        String back,text,cake;
+        back=Integer.toString(n_bback_no);
+        text=Integer.toString(n_text_no);
+        cake=Integer.toString(n_cake_no);
+
+        Intent intent = new Intent(MainActivity.this, DemoActivity.class);
+        intent.putExtra("bboy_name",n_bboy_name);
+        intent.putExtra("your_name",n_your_name);
+        intent.putExtra("wish",nwish);
+        intent.putExtra("back",back);
+        intent.putExtra("text",text);
+        intent.putExtra("cake",cake);
+        startActivity(intent);
+    }
+
 
 /*
     //fetch maptag detail using getMaptag API
