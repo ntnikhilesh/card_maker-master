@@ -81,7 +81,7 @@ public class CardOptionFragment extends Fragment {
                 FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
                 BirthdayDetailFragment fragment = new BirthdayDetailFragment();
                 fragmentTransaction.replace(R.id.fragment_container, fragment);
-                fragmentTransaction.addToBackStack("f2");
+                fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
                 //  Intent i1=new Intent(LoginActivity.this,WeddingDetailActivity.class);
                 //  startActivity(i1);
@@ -98,7 +98,7 @@ public class CardOptionFragment extends Fragment {
                 FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
                 WeddingDetailFragment fragment = new WeddingDetailFragment();
                 fragmentTransaction.replace(R.id.fragment_container, fragment);
-                fragmentTransaction.addToBackStack("f2");
+                fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
                 //  Intent i1=new Intent(LoginActivity.this,WeddingDetailActivity.class);
                 //  startActivity(i1);

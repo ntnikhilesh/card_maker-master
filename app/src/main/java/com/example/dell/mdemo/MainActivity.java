@@ -119,13 +119,22 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
+        } else if(getFragmentManager().getBackStackEntryCount() == 0) {
+            super.onBackPressed();
+        }
+        else {
+            getFragmentManager().popBackStack();
+        }
+
+
+
+        /*else {
 
             Intent i=new Intent(MainActivity.this,MainActivity.class);
             startActivity(i);
            // finish();
             super.onBackPressed();
-        }
+        }*/
     }
 
     @Override
