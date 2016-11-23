@@ -369,7 +369,7 @@ public class DemoActivity extends AppCompatActivity {
             out = new FileOutputStream(filename);
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
 
-            Toast.makeText(DemoActivity.this,"Image saved in Nikhil folder",Toast.LENGTH_LONG).show();
+            Toast.makeText(DemoActivity.this,"Image saved in Birthday Card folder",Toast.LENGTH_LONG).show();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -378,7 +378,7 @@ public class DemoActivity extends AppCompatActivity {
 
     private String getFilename() {
         File file = new File(Environment.getExternalStorageDirectory()
-                .getPath(), "Nikhil");
+                .getPath(), "Birthday Card");
         if (!file.exists()) {
             file.mkdirs();
         }

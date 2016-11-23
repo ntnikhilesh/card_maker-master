@@ -107,7 +107,14 @@ public class SelectDesignFragment extends Fragment {
         // Inflate the layout for this fragment
 
         fl = (FrameLayout) inflater.inflate(R.layout.fragment_select_design, container, false);
-        // Recive data from detail fragment
+
+      //Send data to main activity
+
+        goto_Main_activity();
+
+
+
+      /*  // Recive data from detail fragment
 
         // receive details from previous activity
        ll=(LinearLayout)fl.findViewById(R.id.ll_select_design_fragment);
@@ -127,7 +134,7 @@ public class SelectDesignFragment extends Fragment {
         ppartner_name.setText(nparter_name);
         pwedding_message.setText(nwedding_msg);
         pdate_time.setText(ndate_time);
-        plocation.setText(nlocation);
+        plocation.setText(nlocation); */
 
 
        // TextView t=(TextView)fl.findViewById(R.id.tv_select_design);
@@ -141,6 +148,21 @@ public class SelectDesignFragment extends Fragment {
 
 
     } //end oncreateview
+
+
+
+    // send data from fragment to Activity
+
+    public void goto_Main_activity()
+    {
+        someEventListener1.someEvent(nyour_name,nparter_name,ndate_time,nwedding_msg,nlocation,nimage_no);
+    }
+
+    public interface onSomeEventListener1 {
+        public void someEvent(String w_your_name,String w_parter_name, String w_date_time,String w_wedding_msg,String w_location,int w_image_no);
+    }
+
+    onSomeEventListener1 someEventListener1;
 
 
     public void select_image()
@@ -247,6 +269,12 @@ public class SelectDesignFragment extends Fragment {
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
+        }
+
+        try {
+            someEventListener1 = (onSomeEventListener1) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + " must implement onSomeEventListener1");
         }
     }
 

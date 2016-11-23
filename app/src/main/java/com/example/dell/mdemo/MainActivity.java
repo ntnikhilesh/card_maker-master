@@ -34,7 +34,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, LoginFragment.OnFragmentInteractionListener ,WeddingDetailFragment.OnFragmentInteractionListener,SelectDesignFragment.OnFragmentInteractionListener,SignupFragment.OnFragmentInteractionListener,UpdatePasswordFragment.OnFragmentInteractionListener,SelectBackground.OnFragmentInteractionListener,CardOptionFragment.OnFragmentInteractionListener,BirthdayDetailFragment.OnFragmentInteractionListener,BirthdayCardFragment.OnFragmentInteractionListener,Select_Bback_fragment.OnFragmentInteractionListener,Select_btext_fragment.OnFragmentInteractionListener,select_bcake_fragment.OnFragmentInteractionListener,select_bcake_fragment.onSomeEventListener {
+        implements NavigationView.OnNavigationItemSelectedListener, LoginFragment.OnFragmentInteractionListener ,WeddingDetailFragment.OnFragmentInteractionListener,SelectDesignFragment.OnFragmentInteractionListener,SignupFragment.OnFragmentInteractionListener,UpdatePasswordFragment.OnFragmentInteractionListener,SelectBackground.OnFragmentInteractionListener,CardOptionFragment.OnFragmentInteractionListener,BirthdayDetailFragment.OnFragmentInteractionListener,BirthdayCardFragment.OnFragmentInteractionListener,Select_Bback_fragment.OnFragmentInteractionListener,Select_btext_fragment.OnFragmentInteractionListener,select_bcake_fragment.OnFragmentInteractionListener,select_bcake_fragment.onSomeEventListener,SelectDesignFragment.onSomeEventListener1 {
    // EditText enter_mapatg,address_line1,address_line2,city,state,zip,phone,lat,lon;
     //ImageView maptag_image;
 
@@ -301,6 +301,23 @@ public class MainActivity extends AppCompatActivity
         intent.putExtra("text",text);
         intent.putExtra("cake",cake);
         startActivity(intent);
+    }
+
+    //wc print items
+
+    @Override
+    public void someEvent(String w_your_name, String w_parter_name, String w_date_time, String w_wedding_msg, String w_location, int w_image_no) {
+
+        String img_no=Integer.toString(w_image_no);
+        Intent intent = new Intent(MainActivity.this, WCActivity.class);
+        intent.putExtra("your_name",w_your_name);
+        intent.putExtra("partner_name",w_parter_name);
+        intent.putExtra("time",w_date_time);
+        intent.putExtra("msg",w_wedding_msg);
+        intent.putExtra("location",w_location);
+        intent.putExtra("image_no",img_no);
+        startActivity(intent);
+
     }
 
 
