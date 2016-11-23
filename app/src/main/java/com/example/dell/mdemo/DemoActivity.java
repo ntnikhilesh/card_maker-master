@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.os.Environment;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -61,9 +63,30 @@ public class DemoActivity extends AppCompatActivity {
 
                 viewToBitmap1();
                 saveImageFile(bitmap);
+
+                Intent i=new Intent(DemoActivity.this,MainActivity.class);
+                startActivity(i);
+            }
+        });
+
+
+
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.save_bcard);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fab.setVisibility(View.INVISIBLE);
+                viewToBitmap1();
+                saveImageFile(bitmap);
+
+                Intent i=new Intent(DemoActivity.this,MainActivity.class);
+                startActivity(i);
+
             }
         });
     }// end onCreate
+
+
 
 
     public void set_data_on_bcard()
@@ -387,5 +410,10 @@ public class DemoActivity extends AppCompatActivity {
         return uriSting;
     }
 
-
+    @Override
+    public void onBackPressed() {
+        Intent i=new Intent(DemoActivity.this,MainActivity.class);
+        startActivity(i);
+        super.onBackPressed();
+    }
 }

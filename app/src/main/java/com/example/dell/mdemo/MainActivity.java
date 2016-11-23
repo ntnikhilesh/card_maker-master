@@ -121,7 +121,8 @@ public class MainActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
 
-
+            Intent i=new Intent(MainActivity.this,MainActivity.class);
+            startActivity(i);
            // finish();
             super.onBackPressed();
         }
@@ -391,5 +392,8 @@ public class MainActivity extends AppCompatActivity
     }
 
 */
+
+
+
 }
 

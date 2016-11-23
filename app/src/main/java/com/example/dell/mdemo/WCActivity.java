@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.os.Environment;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -86,6 +87,22 @@ public class WCActivity extends AppCompatActivity {
 
                 viewToBitmap1();
                 saveImageFile(bitmap);
+                Intent i=new Intent(WCActivity.this,MainActivity.class);
+                startActivity(i);
+            }
+        });
+
+
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.save_wcard);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fab.setVisibility(View.INVISIBLE);
+                viewToBitmap1();
+                saveImageFile(bitmap);
+                Intent i=new Intent(WCActivity.this,MainActivity.class);
+                startActivity(i);
+
             }
         });
 
@@ -233,4 +250,11 @@ public class WCActivity extends AppCompatActivity {
         plocation.setTextColor(ContextCompat.getColor(this, R.color.wc_text_color));
     }
 
+    @Override
+    public void onBackPressed() {
+
+        Intent i=new Intent(WCActivity.this,MainActivity.class);
+        startActivity(i);
+        super.onBackPressed();
+    }
 }
