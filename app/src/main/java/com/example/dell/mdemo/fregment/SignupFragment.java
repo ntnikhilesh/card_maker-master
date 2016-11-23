@@ -37,7 +37,7 @@ public class SignupFragment extends Fragment {
 
 
     String sigup_email;
-    String signup_pass;
+    String signup_pass,full_name;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -46,7 +46,7 @@ public class SignupFragment extends Fragment {
 
     // UI references.
     private AutoCompleteTextView mEmailView_signup;
-    private EditText mPasswordView_signup;
+    private EditText mPasswordView_signup,mFull_Name;
 
 
 
@@ -110,6 +110,7 @@ public class SignupFragment extends Fragment {
         // populateAutoComplete();
 
         mPasswordView_signup = (EditText)fl.findViewById(R.id.et_password_on_signup);
+        mFull_Name = (EditText)fl.findViewById(R.id.et_full_name);
 
         button_goto_login=(Button)fl.findViewById(R.id.botton_go_to_login_from_signup);
         button_goto_login.setOnClickListener(new View.OnClickListener() {
@@ -187,19 +188,34 @@ return fl;
         // Reset errors.
         mEmailView_signup.setError(null);
         mPasswordView_signup.setError(null);
+        mFull_Name.setError(null);
 
         // Store values at the time of the login attempt.
         sigup_email=mEmailView_signup.getText().toString();
         signup_pass=mPasswordView_signup.getText().toString();
+        full_name=mFull_Name.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
 
         // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(signup_pass) && !isPasswordValid(signup_pass))
+        if (TextUtils.isEmpty(signup_pass))
         {
             mPasswordView_signup.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView_signup;
+            cancel = true;
+        } else if (!isPasswordValid(signup_pass))
+        {
+            mPasswordView_signup.setError(getString(R.string.error_invalid_password));
+            focusView = mPasswordView_signup;
+            cancel = true;
+        }
+
+        // Check for a valid full name if the user entered one.
+        if (TextUtils.isEmpty(full_name))
+        {
+            mFull_Name.setError(getString(R.string.error_field_required));
+            focusView = mFull_Name;
             cancel = true;
         }
 
@@ -307,7 +323,7 @@ return fl;
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                .setDisplayName("Nikhilesh")
+                .setDisplayName(full_name)
                 .setPhotoUri(Uri.parse("http://i.imgur.com/i4f9f9I.jpg"))
                 .build();
 

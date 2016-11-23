@@ -159,9 +159,13 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.action_home) {
 
+            android.support.v4.app.FragmentManager fragmentManager=getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+            CardOptionFragment fragment = new CardOptionFragment();
+            fragmentTransaction.replace(R.id.fragment_container, fragment);
+            fragmentTransaction.addToBackStack("f14");
+            fragmentTransaction.commit();
 
-            Toast.makeText(MainActivity.this, "Comming Soon...",
-                    Toast.LENGTH_SHORT).show();
         }
 
         if (id == R.id.action_profile) {
