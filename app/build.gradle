@@ -18,6 +18,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    allprojects {
+        repositories {
+            maven { url "https://jitpack.io" }
+        }
+    }
 }
 
 dependencies {
@@ -42,6 +47,8 @@ dependencies {
     compile 'com.google.firebase:firebase-storage:9.8.0'
     compile 'com.android.support:support-v4:25.0.0'
     compile 'de.hdodenhof:circleimageview:2.1.0'
+    compile 'com.github.nguyenhoanglam:ImagePicker:1.1.2'
     testCompile 'junit:junit:4.12'
+
 }
 apply plugin: 'com.google.gms.google-services'

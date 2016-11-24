@@ -3,6 +3,7 @@ package com.example.dell.mdemo;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.net.Uri;
 import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -18,10 +19,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dell.mdemo.fregment.select_bcake_fragment;
+import com.nguyenhoanglam.imagepicker.activity.ImagePicker;
+import com.nguyenhoanglam.imagepicker.activity.ImagePickerActivity;
+import com.nguyenhoanglam.imagepicker.model.Image;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 
 import static android.R.attr.bitmap;
 
@@ -35,6 +40,10 @@ public class DemoActivity extends AppCompatActivity {
     LinearLayout ll;
 
     Bitmap bitmap;
+
+    Image images;
+
+    int REQUEST_CODE_PICKER=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +64,31 @@ public class DemoActivity extends AppCompatActivity {
 
 
         set_data_on_bcard();
+
+        //set birthday boy image
+
+        iv_bboy=(ImageView)findViewById(R.id.iv_bboy_image);
+        iv_bboy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DemoActivity.this, ImagePickerActivity.class);
+
+                intent.putExtra(ImagePickerActivity.INTENT_EXTRA_FOLDER_MODE, true);
+                intent.putExtra(ImagePickerActivity.INTENT_EXTRA_MODE, ImagePickerActivity.MODE_MULTIPLE);
+                intent.putExtra(ImagePickerActivity.INTENT_EXTRA_LIMIT, 10);
+                intent.putExtra(ImagePickerActivity.INTENT_EXTRA_SHOW_CAMERA, true);
+                intent.putExtra(ImagePickerActivity.INTENT_EXTRA_SELECTED_IMAGES, images);
+                intent.putExtra(ImagePickerActivity.INTENT_EXTRA_FOLDER_TITLE, "Album");
+                intent.putExtra(ImagePickerActivity.INTENT_EXTRA_IMAGE_TITLE, "Tap to select images");
+                intent.putExtra(ImagePickerActivity.INTENT_EXTRA_IMAGE_DIRECTORY, "Camera");
+
+                startActivityForResult(intent, REQUEST_CODE_PICKER);
+            }
+        });
+
+
+
+        //save image
 
        Button save_image=(Button)findViewById(R.id.button_save_bimage_on_demo);
         save_image.setOnClickListener(new View.OnClickListener() {
@@ -87,7 +121,22 @@ public class DemoActivity extends AppCompatActivity {
     }// end onCreate
 
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_CODE_PICKER && resultCode == RESULT_OK && data != null) {
+            ArrayList<Image> images = data.getParcelableArrayListExtra(ImagePickerActivity.INTENT_EXTRA_SELECTED_IMAGES);
 
+
+            Log.d("bimage = ",images.get(0).getPath());
+            Uri imgUri=Uri.parse(images.get(0).getPath());
+
+
+
+           iv_bboy=(ImageView)findViewById(R.id.iv_bboy_image);
+            iv_bboy.setImageURI(imgUri);
+            // do your logic ....
+        }
+    }
 
     public void set_data_on_bcard()
     {
