@@ -15,8 +15,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.example.dell.mdemo.R;
-import com.github.jjobes.slidedatetimepicker.SlideDateTimeListener;
-import com.github.jjobes.slidedatetimepicker.SlideDateTimePicker;
+
 import com.kunzisoft.switchdatetime.SwitchDateTimeDialogFragment;
 
 import java.text.SimpleDateFormat;
@@ -55,24 +54,7 @@ public class WeddingDetailFragment extends Fragment {
     private SimpleDateFormat mFormatter = new SimpleDateFormat("MMMM dd yyyy hh:mm aa");
     private Button mButton;
 
-    private SlideDateTimeListener listener = new SlideDateTimeListener() {
 
-        @Override
-        public void onDateTimeSet(Date date)
-        {
-            mdate_time=mFormatter.format(date);
-            tv_date_time.setText(mdate_time);
-
-        }
-
-        // Optional cancel listener
-        @Override
-        public void onDateTimeCancel()
-        {
-          //  Toast.makeText(WeddingDetailActivity.this,
-               //     "Canceled", Toast.LENGTH_SHORT).show();
-        }
-    };
 
 
 
