@@ -32,6 +32,7 @@ import com.example.dell.mdemo.fregment.WeddingDetailFragment;
 import com.example.dell.mdemo.fregment.select_bcake_fragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.yinglan.keyboard.HideUtil;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, LoginFragment.OnFragmentInteractionListener ,WeddingDetailFragment.OnFragmentInteractionListener,SelectDesignFragment.OnFragmentInteractionListener,SignupFragment.OnFragmentInteractionListener,UpdatePasswordFragment.OnFragmentInteractionListener,SelectBackground.OnFragmentInteractionListener,CardOptionFragment.OnFragmentInteractionListener,BirthdayDetailFragment.OnFragmentInteractionListener,BirthdayCardFragment.OnFragmentInteractionListener,Select_Bback_fragment.OnFragmentInteractionListener,Select_btext_fragment.OnFragmentInteractionListener,select_bcake_fragment.OnFragmentInteractionListener,select_bcake_fragment.onSomeEventListener,SelectDesignFragment.onSomeEventListener1 {
@@ -48,6 +49,9 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
      setContentView(R.layout.activity_main);
+        // Hide keyboard
+
+        HideUtil.init(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
        setSupportActionBar(toolbar);
 
