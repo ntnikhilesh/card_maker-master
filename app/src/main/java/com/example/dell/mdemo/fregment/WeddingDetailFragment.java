@@ -17,9 +17,12 @@ import android.widget.TextView;
 import com.example.dell.mdemo.R;
 import com.github.jjobes.slidedatetimepicker.SlideDateTimeListener;
 import com.github.jjobes.slidedatetimepicker.SlideDateTimePicker;
+import com.kunzisoft.switchdatetime.SwitchDateTimeDialogFragment;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,6 +39,16 @@ public class WeddingDetailFragment extends Fragment {
     String myour_name,mpartner_name,mwedding_msg,mdate_time,mlocation;
     Button nextb,datetimeb;
     TextView tv_date_time;
+
+    private static final String TAG = "Sample";
+
+    private static final String TAG_DATETIME_FRAGMENT = "TAG_DATETIME_FRAGMENT";
+
+    private static final String STATE_TEXTVIEW = "STATE_TEXTVIEW";
+
+    private SwitchDateTimeDialogFragment dateTimeFragment;
+
+    FrameLayout fl;
 
     //date and time picker
 
@@ -107,6 +120,8 @@ public class WeddingDetailFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
     }
 
     @Override
@@ -114,7 +129,7 @@ public class WeddingDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-               FrameLayout fl = (FrameLayout) inflater.inflate(R.layout.fragment_wedding_detail, container, false);
+               fl = (FrameLayout) inflater.inflate(R.layout.fragment_wedding_detail, container, false);
 
 
         your_name=(EditText)fl.findViewById(R.id.et_your_name);
@@ -123,10 +138,26 @@ public class WeddingDetailFragment extends Fragment {
         wedding_msg=(EditText)fl.findViewById(R.id.et_wedding_msg);
         location=(EditText)fl.findViewById(R.id.et_location);
         datetimeb=(Button)fl.findViewById(R.id.button_set_datetime);
+
+        //date d time
+
+        if (savedInstanceState != null) {
+            // Restore value from saved state
+            tv_date_time.setText(savedInstanceState.getCharSequence(STATE_TEXTVIEW));
+        }
+
+        initialize_date_time_data();
+
+
+
+
         datetimeb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new SlideDateTimePicker.Builder(getFragmentManager())
+
+                dateTimeFragment.show(getActivity().getSupportFragmentManager(), TAG_DATETIME_FRAGMENT);
+
+               /* new SlideDateTimePicker.Builder(getFragmentManager())
                         .setListener(listener)
                         .setInitialDate(new Date())
                         //.setMinDate(minDate)
@@ -135,7 +166,7 @@ public class WeddingDetailFragment extends Fragment {
                         //.setTheme(SlideDateTimePicker.HOLO_DARK)
                         //.setIndicatorColor(Color.parseColor("#990000"))
                         .build()
-                        .show();
+                        .show();  */
             }
         });
         nextb=(Button)fl.findViewById(R.id.button_next_on_wedding_detail_fragment);
@@ -184,7 +215,69 @@ public class WeddingDetailFragment extends Fragment {
 
 
         return fl;
+    }//end OncreateView
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        // Save the current textView
+        tv_date_time=(TextView)fl.findViewById(R.id.tv_date_time);
+        savedInstanceState.putCharSequence(STATE_TEXTVIEW, tv_date_time.getText());
+        super.onSaveInstanceState(savedInstanceState);
     }
+
+
+
+    public void initialize_date_time_data()
+    {
+
+
+
+        // Construct SwitchDateTimePicker
+        dateTimeFragment = (SwitchDateTimeDialogFragment)getActivity().getSupportFragmentManager().findFragmentByTag(TAG_DATETIME_FRAGMENT);
+        if(dateTimeFragment == null) {
+            dateTimeFragment = SwitchDateTimeDialogFragment.newInstance(
+                    getString(R.string.label_datetime_dialog),
+                    getString(R.string.positive_button_datetime_picker),
+                    getString(R.string.negative_button_datetime_picker)
+            );
+        }
+
+        // Assign values we want
+        final SimpleDateFormat myDateFormat = new SimpleDateFormat("d MMM yyyy HH:mm", java.util.Locale.getDefault());
+        dateTimeFragment.startAtCalendarView();
+        dateTimeFragment.set24HoursMode(false);
+        dateTimeFragment.setDefaultHourOfDay(15);
+        dateTimeFragment.setDefaultMinute(20);
+        dateTimeFragment.setDefaultDay(8);
+        dateTimeFragment.setDefaultMonth(Calendar.AUGUST);
+        dateTimeFragment.setDefaultYear(2018);
+
+        // Define new day and month format
+        try {
+            dateTimeFragment.setSimpleDateMonthAndDayFormat(new SimpleDateFormat("MMMM dd", Locale.getDefault()));
+        } catch (SwitchDateTimeDialogFragment.SimpleDateMonthAndDayFormatException e) {
+            Log.e(TAG, e.getMessage());
+        }
+
+        // Set listener for date
+        dateTimeFragment.setOnButtonClickListener(new SwitchDateTimeDialogFragment.OnButtonClickListener() {
+            @Override
+            public void onPositiveButtonClick(Date date) {
+                tv_date_time.setText(myDateFormat.format(date));
+                mdate_time=tv_date_time.getText().toString();
+            }
+
+            @Override
+            public void onNegativeButtonClick(Date date) {
+                tv_date_time.setText("");
+            }
+        });
+
+
+    }
+
+
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

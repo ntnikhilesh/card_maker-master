@@ -89,10 +89,10 @@ public class SelectDesignFragment extends Fragment {
             nlocation= bundle.getString("location");
             nimage_no=bundle.getInt("image no");
 
-            Toast.makeText(getActivity(),"image no-"+nimage_no,Toast.LENGTH_LONG).show();
+            //Toast.makeText(getActivity(),"image no-"+ndate_time,Toast.LENGTH_LONG).show();
 
 
-           // Log.d("name",nyourname);
+           Log.d("wc_dt",ndate_time);
         }
 
 

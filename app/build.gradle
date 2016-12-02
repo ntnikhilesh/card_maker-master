@@ -49,6 +49,7 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.github.nguyenhoanglam:ImagePicker:1.1.2'
     compile 'com.yinglan.keyboard:hidekeyboard:0.0.2'
+    compile 'com.github.Kunzisoft:Android-SwitchDateTimePicker:1.2'
     testCompile 'junit:junit:4.12'
 
 }
