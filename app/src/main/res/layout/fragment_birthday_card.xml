@@ -95,11 +95,18 @@
             android:layout_marginRight="50dp"
             />
         <Button
+            android:id="@+id/button_share_bimage"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text="Share Image"
+            />
+        <Button
             android:id="@+id/button_save_bimage"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:text="Save Image"
             android:onClick="saveImage"/>
+
 
     </LinearLayout>
     </ScrollView>

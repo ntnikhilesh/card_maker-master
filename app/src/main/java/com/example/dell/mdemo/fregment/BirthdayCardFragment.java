@@ -1,6 +1,7 @@
 package com.example.dell.mdemo.fregment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.net.Uri;
@@ -42,7 +43,7 @@ public class BirthdayCardFragment extends Fragment {
     Bitmap bitmap;
     FrameLayout fl;
 
-Button save_image;
+Button save_image,share_image;
 
     TextView tv_bboy_name,tv_wish,tv_from;
 
@@ -126,6 +127,18 @@ Button save_image;
 
                 viewToBitmap1();
                 saveImageFile(bitmap);
+            }
+        });
+
+        share_image=(Button)fl.findViewById(R.id.button_share_bimage);
+        share_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(android.content.Intent.ACTION_SEND);
+                i.setType("text/plain");
+                i.putExtra(android.content.Intent.EXTRA_SUBJECT,"Subject test");
+                i.putExtra(android.content.Intent.EXTRA_TEXT, "extra text that you want to put");
+                startActivity(Intent.createChooser(i,"Share via"));
             }
         });
 
