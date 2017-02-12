@@ -105,7 +105,9 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:text="Save Image"
-            android:onClick="saveImage"/>
+            android:onClick="saveImage"
+            android:visibility="gone"
+            />
 
 
     </LinearLayout>

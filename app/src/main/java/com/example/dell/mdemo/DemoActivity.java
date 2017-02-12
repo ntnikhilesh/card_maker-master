@@ -42,6 +42,7 @@ public class DemoActivity extends AppCompatActivity {
     Bitmap bitmap;
 
     Image images;
+    String filename;
 
     int REQUEST_CODE_PICKER=1;
 
@@ -115,6 +116,27 @@ public class DemoActivity extends AppCompatActivity {
 
                 Intent i=new Intent(DemoActivity.this,MainActivity.class);
                 startActivity(i);
+
+            }
+        });
+
+
+        //share Image
+
+        final FloatingActionButton fab_share = (FloatingActionButton) findViewById(R.id.share_bcard);
+        fab_share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //fab_share.setVisibility(View.INVISIBLE);
+
+                Intent i1=new Intent(android.content.Intent.ACTION_SEND);
+                i1.setType("text/plain");
+                i1.putExtra(android.content.Intent.EXTRA_SUBJECT,"Subject test");
+                i1.putExtra(android.content.Intent.EXTRA_TEXT, "App Made By- Nikhil");
+                startActivity(Intent.createChooser(i1,"Share via"));
+
+                //Intent i2=new Intent(DemoActivity.this,MainActivity.class);
+                //startActivity(i2);
 
             }
         });
@@ -436,7 +458,7 @@ public class DemoActivity extends AppCompatActivity {
 
     public String saveImageFile(Bitmap bitmap) {
         FileOutputStream out = null;
-        String filename = getFilename();
+        filename = getFilename();
         try {
             out = new FileOutputStream(filename);
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
@@ -445,6 +467,7 @@ public class DemoActivity extends AppCompatActivity {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        Log.d("image storage address-","="+filename);
         return filename;
     }
 

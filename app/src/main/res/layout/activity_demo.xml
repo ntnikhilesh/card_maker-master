@@ -125,5 +125,13 @@ tools:context="com.example.dell.mdemo.DemoActivity">
         android:layout_margin="@dimen/fab_margin"
         android:src="@drawable/save_icon"
         />
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/share_bcard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/ic_menu_share"
+        />
 </FrameLayout>
 
