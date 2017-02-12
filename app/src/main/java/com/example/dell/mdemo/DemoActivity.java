@@ -2,6 +2,7 @@ package com.example.dell.mdemo;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.net.Uri;
 import android.os.Environment;
@@ -26,6 +27,7 @@ import com.nguyenhoanglam.imagepicker.model.Image;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 
 import static android.R.attr.bitmap;
@@ -107,10 +109,13 @@ public class DemoActivity extends AppCompatActivity {
 
 
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.save_bcard);
+        final FloatingActionButton fab_share = (FloatingActionButton) findViewById(R.id.share_bcard);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 fab.setVisibility(View.INVISIBLE);
+                fab_share.setVisibility(View.INVISIBLE);
                 viewToBitmap1();
                 saveImageFile(bitmap);
 
@@ -123,20 +128,66 @@ public class DemoActivity extends AppCompatActivity {
 
         //share Image
 
-        final FloatingActionButton fab_share = (FloatingActionButton) findViewById(R.id.share_bcard);
+
         fab_share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //fab_share.setVisibility(View.INVISIBLE);
+                fab_share.setVisibility(View.INVISIBLE);
+                fab.setVisibility(View.INVISIBLE);
+                //save image and get url of image
+                // Capture actionbar menu item click
 
-                Intent i1=new Intent(android.content.Intent.ACTION_SEND);
-                i1.setType("text/plain");
-                i1.putExtra(android.content.Intent.EXTRA_SUBJECT,"Subject test");
-                i1.putExtra(android.content.Intent.EXTRA_TEXT, "App Made By- Nikhil");
-                startActivity(Intent.createChooser(i1,"Share via"));
 
-                //Intent i2=new Intent(DemoActivity.this,MainActivity.class);
-                //startActivity(i2);
+                       // Bitmap bitmap;
+                        OutputStream output;
+
+                        // Take screen shot of image and convert into bitmap
+                viewToBitmap1();
+                        //bitmap = BitmapFactory.decodeResource(getResources(),
+                                //R.drawable.wallpaper);
+
+                        // Find the SD Card path
+                        File filepath = Environment.getExternalStorageDirectory();
+
+                        // Create a new folder AndroidBegin in SD Card
+                        File dir = new File(filepath.getAbsolutePath() + "/Birthday Card/");
+                        dir.mkdirs();
+
+                        // Create a name for the saved image
+                        File file = new File(dir, "sample_wallpaper.png");
+
+                        try {
+
+                            // Share Intent
+                            Intent share = new Intent(Intent.ACTION_SEND);
+
+                            // Type of file to share
+                            share.setType("image/jpeg");
+
+                            output = new FileOutputStream(file);
+
+                            // Compress into png format image from 0% - 100%
+                            bitmap.compress(Bitmap.CompressFormat.PNG, 100, output);
+                            output.flush();
+                            output.close();
+
+                            // Locate the image to Share
+                            Uri uri = Uri.fromFile(file);
+
+                            // Pass the image into an Intnet
+                            share.putExtra(Intent.EXTRA_STREAM, uri);
+
+                            // Show the social share chooser list
+                            fab_share.setVisibility(View.VISIBLE);
+                            fab.setVisibility(View.VISIBLE);
+                            startActivity(Intent.createChooser(share, "NT App...Share Card Via"));
+
+                        } catch (Exception e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+
+
 
             }
         });
